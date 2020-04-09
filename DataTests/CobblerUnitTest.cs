@@ -1,6 +1,7 @@
 using System;
 using ExamTwoCodeQuestions.Data;
 using Xunit;
+using System.ComponentModel;
 
 namespace ExamTwoCodeQuestions.DataTests
 {
@@ -72,5 +73,68 @@ namespace ExamTwoCodeQuestions.DataTests
             var cobbler = new Cobbler();
             Assert.IsAssignableFrom<IOrderItem>(cobbler);
         }
+
+        /// <summary>
+        /// Tests if INotifyPropertyChanged is implemented
+        /// </summary>
+        [Fact]
+        public void ShouldImplementINotifyPropertyChanged()
+        {
+            var soda = new Cobbler();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(soda);
+        }
+
+        /// <summary>
+        /// Tests if changing the fruit property invokes property changed for "Fruit"
+        /// </summary>
+        [Fact]
+        public void ChangingFruitPropertyShouldInvokePropertyChangedForFruit()
+        {
+            var cobbler = new Cobbler();
+            Assert.PropertyChanged(cobbler, "Fruit", () =>
+            {
+                cobbler.Fruit = FruitFilling.Blueberry;
+            });
+        }
+
+        /// <summary>
+        /// Tests if changing the withIceCream property invokes property changed for "Price"
+        /// </summary>
+        [Fact]
+        public void ChangingWithgIceCreamropertyShouldInvokePropertyChangedForPrice()
+        {
+            var cobbler = new Cobbler();
+            Assert.PropertyChanged(cobbler, "Price", () =>
+            {
+                cobbler.WithIceCream = false;
+            });
+        }
+
+        /// <summary>
+        /// Tests if changing the withIceCream property invokes property changed for "WithIceCream"
+        /// </summary>
+        [Fact]
+        public void ChangingWithgIceCreamropertyShouldInvokePropertyChangedForWithIceCream()
+        {
+            var cobbler = new Cobbler();
+            Assert.PropertyChanged(cobbler, "WithIceCream", () =>
+            {
+                cobbler.WithIceCream = false;
+            });
+        }
+
+        /// <summary>
+        /// Tests if changing the withIceCream property invokes property changed for "SpecialInstructions"
+        /// </summary>
+        [Fact]
+        public void ChangingWithgIceCreamropertyShouldInvokePropertyChangedForSpecialInstructions()
+        {
+            var cobbler = new Cobbler();
+            Assert.PropertyChanged(cobbler, "SpecialInstructions", () =>
+            {
+                cobbler.WithIceCream = false;
+            });
+        }
+
     }
 }
